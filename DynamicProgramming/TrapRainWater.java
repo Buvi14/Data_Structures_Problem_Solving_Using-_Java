@@ -1,3 +1,4 @@
+package DynamicProgramming;
 public class TrapRainWater {
     public static void main(String[] args) {
         System.out.println(trap(new int[]{4,2,0,3,2,5}));

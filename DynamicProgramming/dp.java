@@ -1,3 +1,4 @@
+package DynamicProgramming;
 /**
  * dp
  */
@@ -11,38 +12,37 @@ public class dp {
         // String str2 ="ABCH";
         // System.out.println(longest_common_subsequence(str1, str2));
         // System.out.println(palindrome_substring("abccbd"));
-        System.out.println(MinPalindrome_Cut("abcdefghhgfe"));
+        System.out.println(MinPalindrome_Cut("ab"));
     }
 
     // Minimum Palindromic cut
     public static int MinPalindrome_Cut(String str){
-        int[][] st = new int[str.length()][str.length()];
-        
-        for(int gap=0;gap<str.length();gap++){
+        int[][] strg = new int[str.length()][str.length()];
+        for(int gap =0;gap<str.length();gap++){
             for(int i=0,j=gap;j<str.length();i++,j++){
                 if(gap==0){
-                    st[i][j]=0;
-                }
-                else if(gap==1){
+                    strg[i][j] = 0;
+                }else if(gap==1){
                     if(str.charAt(i)==str.charAt(j)){
-                        st[i][j]=0;
+                        strg[i][j] = 0;
+                    }else{
+                        strg[i][j]=1;
                     }
-                }
-                else{
-                    if(str.charAt(i)==str.charAt(j) && st[i+1][j-1]==0){
-                        st[i][j]=0;
-                    }
-                    else{
+                }else{
+                    if(str.charAt(i)==str.charAt(j)&&strg[i+1][j-1]==0){
+                       strg[i][j] = 0; 
+                    }else{
                         int min = Integer.MAX_VALUE;
-                        for(int idash = i+1,jdash=j-gap;jdash<j;idash++,jdash++){
-                            min = Math.min(min,st[i][jdash]+st[idash][j]+1);
+                        for(int idash=i+1,jdash=j-gap;jdash<j;idash++,jdash++){
+                            min = Math.min(min,strg[i][jdash]+strg[idash][j]+1);
                         }
-                        st[i][j]=min;
+                        strg[i][j] = min;
                     }
                 }
             }
         }
-        return st[0][str.length()-1];
+
+        return strg[0][strg.length-1];
     }
 
     //Longest Palindromic substring using Gap Method
