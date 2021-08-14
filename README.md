@@ -6,3 +6,4 @@
          1. Arrays, Linked list , Stack, Queue, Tree
 3. We want to know some of the algorithm to solve those data structures
          1. Recursion, Dynamic programming, Greedy
+4. Solving Some Leetcode Problems
